@@ -19,11 +19,11 @@ git clone "https://${TOKEN}@${REPO}" "${REPO_DIR}"
 
 cd "${REPO_DIR}" || exit 1
 
-cat > "${REPO_PATH}/namespaces.yaml" <<EOL
+cat > "${REPO_PATH}/dashboard.yaml" <<EOL
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: namespaces-${BRANCH}
+  name: dashboard-${BRANCH}
 spec:
   destination:
     namespace: ${NAMESPACE}

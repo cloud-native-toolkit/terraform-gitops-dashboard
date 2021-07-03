@@ -74,3 +74,6 @@ variable "git_repo" {
 variable "gitops_namespace" {
   default = "openshift-gitops"
 }
+
+variable "git_username" {
+}

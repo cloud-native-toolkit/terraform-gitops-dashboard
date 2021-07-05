@@ -1,0 +1,9 @@
+dependencies:
+- name: developer-dashboard
+  repository: https://charts.cloudnativetoolkit.dev/
+  version: 1.3.0
+- name: tool-config
+  repository: https://charts.cloudnativetoolkit.dev/
+  version: 0.11.1
+digest: sha256:c25cd0f2afd92fd66d1241ee62b68bdd79cba5a9980641e7798828a39125aaa0
+generated: "2021-07-05T12:07:40.405961-05:00"

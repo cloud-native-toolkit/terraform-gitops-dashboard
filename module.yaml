@@ -49,7 +49,7 @@ versions:
       moduleRef:
         id: namespace
         output: name
-    - name: serverName
+    - name: server_name
       moduleRef:
         id: gitops
-        output: serverName
+        output: server_name

@@ -89,7 +89,7 @@ variable "image_tag" {
   default     = "v1.4.4"
 }
 
-variable "serverName" {
+variable "server_name" {
   type        = string
   description = "The name of the server"
   default     = "default"

@@ -30,7 +30,7 @@ locals {
     developer-dashboard = local.dashboard_config
     tool-config = local.tool_config
   })
-  values_file = "values-${var.serverName}.yaml"
+  values_file = "values-${var.server_name}.yaml"
 }
 
 resource null_resource setup_binaries {
@@ -59,7 +59,7 @@ resource null_resource setup_gitops {
   depends_on = [null_resource.create_yaml]
 
   provisioner "local-exec" {
-    command = "$(command -v igc || command -v ${local.bin_dir}/igc) gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.serverName}' -l '${local.layer}' --valueFiles 'values.yaml,${local.values_file}' --debug"
+    command = "$(command -v igc || command -v ${local.bin_dir}/igc) gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}' --valueFiles 'values.yaml,${local.values_file}' --debug"
 
     environment = {
       GIT_CREDENTIALS = yamlencode(var.git_credentials)

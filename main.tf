@@ -50,7 +50,7 @@ resource null_resource create_yaml {
     command = "${path.module}/scripts/create-yaml.sh '${local.yaml_dir}' '${local.values_file}'"
 
     environment = {
-      VALUES_CONTENT = nonsensitive(local.values_content)
+      VALUES_CONTENT = local.values_content
     }
   }
 }
@@ -62,7 +62,7 @@ resource null_resource setup_gitops {
     command = "$(command -v igc || command -v ${local.bin_dir}/igc) gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.serverName}' -l '${local.layer}' --valueFiles 'values.yaml,${local.values_file}' --debug"
 
     environment = {
-      GIT_CREDENTIALS = yamlencode(nonsensitive(var.git_credentials))
+      GIT_CREDENTIALS = yamlencode(var.git_credentials)
       GITOPS_CONFIG   = yamlencode(var.gitops_config)
     }
   }

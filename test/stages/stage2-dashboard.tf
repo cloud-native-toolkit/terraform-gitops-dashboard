@@ -7,4 +7,5 @@ module "gitops_dashboard" {
   cluster_ingress_hostname = module.dev_cluster.platform.ingress
   cluster_type             = module.dev_cluster.platform.type_code
   tls_secret_name          = module.dev_cluster.platform.tls_secret
+  server_name = module.gitops.server_name
 }

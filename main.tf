@@ -30,7 +30,7 @@ locals {
     developer-dashboard = local.dashboard_config
     tool-config = local.tool_config
   })
-  values_file = "values-${var.serverName}.yaml"
+  values_file = "values-${var.server_name}.yaml"
 }
 
 resource null_resource setup_binaries {

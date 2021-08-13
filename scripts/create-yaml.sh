@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
-CHART_DIR=$(cd "${SCRIPT_DIR}/..chart/dashboard"; pwd -P)
+CHART_DIR=$(cd "${SCRIPT_DIR}/../chart/dashboard"; pwd -P)
 
 OUTPUT_PATH="$1"
 VALUES_FILE="$2"

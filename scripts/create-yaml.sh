@@ -11,3 +11,6 @@ mkdir -p "${OUTPUT_PATH}"
 cp -R "${CHART_DIR}"/* "${OUTPUT_PATH}"
 
 echo "${VALUES_CONTENT}" > "${OUTPUT_PATH}/${VALUES_FILE}"
+
+echo "Files in output path"
+ls -l "${OUTPUT_PATH}"

@@ -50,7 +50,7 @@ resource null_resource create_yaml {
     command = "${path.module}/scripts/create-yaml.sh '${local.yaml_dir}' '${local.values_file}'"
 
     environment = {
-      VALUES_CONTENT = local.values_content
+      VALUES_CONTENT = nonsensitive(local.values_content)
     }
   }
 }

@@ -10,7 +10,13 @@ mkdir -p "${OUTPUT_PATH}"
 
 cp -R "${CHART_DIR}"/* "${OUTPUT_PATH}"
 
-echo "${VALUES_CONTENT}" > "${OUTPUT_PATH}/${VALUES_FILE}"
+if [[ -n "${VALUES_CONTENT}" ]]; then
+  echo "${VALUES_CONTENT}" > "${OUTPUT_PATH}/values.yaml"
+fi
+
+if [[ -n "${VALUES_SERVER_CONTENT}" ]] && [[ -n "${VALUES_FILE}" ]]; then
+  echo "${VALUES_SERVER_CONTENT}" > "${OUTPUT_PATH}/${VALUES_FILE}"
+fi
 
 echo "Files in output path"
 ls -l "${OUTPUT_PATH}"

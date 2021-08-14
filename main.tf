@@ -8,27 +8,16 @@ locals {
   global = {
     ingressSubdomain = var.cluster_ingress_hostname
     clusterType = var.cluster_type
-  }
-  dashboard_config = {
-    sso = {
-      enabled = true
-    }
-    image = {
-      repository = "quay.io/ibmgaragecloud/developer-dashboard"
-      tag = var.image_tag
-    }
     tlsSecretName = var.tls_secret_name
   }
-  tool_config = {
-    name = "dashboard"
-    url = local.endpoint_url
-    applicationMenu = false
-    displayName = "Developer Dashboard"
+  dashboard_config = {
+    image = {
+      tag = var.image_tag
+    }
   }
-  values_content = yamlencode({
+  values_server_content = yamlencode({
     global = local.global
-    developer-dashboard = local.dashboard_config
-    tool-config = local.tool_config
+    developer-dashboard = var.image_tag != "" ? local.dashboard_config : {}
   })
   values_file = "values-${var.server_name}.yaml"
 }
@@ -50,7 +39,8 @@ resource null_resource create_yaml {
     command = "${path.module}/scripts/create-yaml.sh '${local.yaml_dir}' '${local.values_file}'"
 
     environment = {
-      VALUES_CONTENT = local.values_content
+      VALUES_CONTENT = ""
+      VALUES_SERVER_CONTENT = local.values_server_content
     }
   }
 }

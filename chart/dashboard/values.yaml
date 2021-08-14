@@ -1,16 +1,4 @@
 
-global:
-  ## The type of cluster (kubernetes or ocp4)
-  clusterType: ocp4
+developer-dashboard: {}
 
-developer-dashboard:
-  sso:
-    enabled: true
-  image:
-    repository: quay.io/ibmgaragecloud/developer-dashboard
-    tag: v1.4.4
-
-tool-config:
-  name: dashboard
-  applicationMenu: false
-  displayName: Developer Dashboard
+tool-config: {}

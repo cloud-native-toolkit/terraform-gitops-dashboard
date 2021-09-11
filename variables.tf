@@ -70,11 +70,13 @@ variable "namespace" {
 variable "cluster_ingress_hostname" {
   type        = string
   description = "Ingress hostname of the IKS cluster."
+  default     = ""
 }
 
 variable "cluster_type" {
   type        = string
   description = "The cluster type (openshift or ocp3 or ocp4 or kubernetes)"
+  default     = "ocp4"
 }
 
 variable "tls_secret_name" {

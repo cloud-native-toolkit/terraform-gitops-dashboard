@@ -6,7 +6,10 @@ tags:
     - gitops
     - dashboard
 versions:
-- platforms: []
+- platforms:
+    - kubernetes
+    - ocp4 
+
   dependencies:
     - id: gitops
       refs:

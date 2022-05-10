@@ -9,6 +9,10 @@ SERVER_VALUES_FILE="$2"
 
 mkdir -p "${DEST_DIR}"
 
+if [[ -z "${TMP_DIR}" ]]; then
+  TMP_DIR="./.tmp/sonarqube"
+fi
+mkdir -p "${TMP_DIR}"
 cp -R "${CHART_DIR}"/* "${DEST_DIR}"
 
 if [[ -n "${VALUES_CONTENT}" ]]; then

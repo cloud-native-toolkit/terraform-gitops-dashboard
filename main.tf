@@ -5,6 +5,7 @@ locals {
   endpoint_url = "http${var.tls_secret_name != "" ? "s" : ""}://${local.ingress_host}"
   yaml_dir = "${path.cwd}/.tmp/dashboard"
   name = "dashboard"
+  tmp_dir = "${path.cwd}/.tmp/dashboard"
   application_branch = "main"
   global = {
     ingressSubdomain = var.cluster_ingress_hostname

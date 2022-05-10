@@ -17,7 +17,7 @@ locals {
       tag = var.image_tag
     }
   }
-  values_server_content = yamlencode({
+  values_content = yamlencode({
     global = local.global
     developer-dashboard = var.image_tag != "" ? local.dashboard_config : {}
   })
@@ -33,8 +33,8 @@ resource null_resource create_yaml {
     command = "${path.module}/scripts/create-yaml.sh '${local.yaml_dir}' '${local.values_file}'"
 
     environment = {
-      VALUES_CONTENT = ""
-      VALUES_SERVER_CONTENT = local.values_server_content
+      VALUES_CONTENT = local.values_content
+      VALUES_SERVER_CONTENT = ""
     }
   }
 }

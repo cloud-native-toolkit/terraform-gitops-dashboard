@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
-CHART_DIR=$(cd "${SCRIPT_DIR}/../chart/dashboard"; pwd -P)
+MODULE_DIR=$(cd "${SCRIPT_DIR}/.."; pwd -P)
+CHART_DIR=$(cd "${MODULE_DIR}/chart/dashboard"; pwd -P)
 
-OUTPUT_PATH="$1"
-VALUES_FILE="$2"
+DEST_DIR="$1"
+SERVER_VALUES_FILE="$2"
 
-mkdir -p "${OUTPUT_PATH}"
+mkdir -p "${DEST_DIR}"
 
-cp -R "${CHART_DIR}"/* "${OUTPUT_PATH}"
+cp -R "${CHART_DIR}"/* "${DEST_DIR}"
 
 if [[ -n "${VALUES_CONTENT}" ]]; then
-  echo "${VALUES_CONTENT}" > "${OUTPUT_PATH}/values.yaml"
+  echo "${VALUES_CONTENT}" > "${DEST_DIR}/values.yaml"
 fi
 
-if [[ -n "${VALUES_SERVER_CONTENT}" ]] && [[ -n "${VALUES_FILE}" ]]; then
-  echo "${VALUES_SERVER_CONTENT}" > "${OUTPUT_PATH}/${VALUES_FILE}"
+if [[ -n "${VALUES_SERVER_CONTENT}" ]] && [[ -n "${SERVER_VALUES_FILE}" ]]; then
+  echo "${VALUES_SERVER_CONTENT}" > "${DEST_DIR}/${SERVER_VALUES_FILE}"
 fi
 
 echo "Files in output path"
-ls -l "${OUTPUT_PATH}"
+ls -l "${DEST_DIR}"

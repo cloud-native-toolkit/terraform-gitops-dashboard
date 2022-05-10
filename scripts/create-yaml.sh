@@ -1,27 +1,22 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
-MODULE_DIR=$(cd "${SCRIPT_DIR}/.."; pwd -P)
-CHART_DIR=$(cd "${MODULE_DIR}/chart/dashboard"; pwd -P)
+CHART_DIR=$(cd "${SCRIPT_DIR}/../chart/dashboard"; pwd -P)
 
-DEST_DIR="$1"
-SERVER_VALUES_FILE="$2"
+OUTPUT_PATH="$1"
+VALUES_FILE="$2"
 
-mkdir -p "${DEST_DIR}"
+mkdir -p "${OUTPUT_PATH}"
 
-if [[ -z "${TMP_DIR}" ]]; then
-  TMP_DIR="./.tmp/dashboard"
-fi
-mkdir -p "${TMP_DIR}"
-cp -R "${CHART_DIR}"/* "${DEST_DIR}"
+cp -R "${CHART_DIR}"/* "${OUTPUT_PATH}"
 
 if [[ -n "${VALUES_CONTENT}" ]]; then
-  echo "${VALUES_CONTENT}" > "${DEST_DIR}/values.yaml"
+  echo "${VALUES_CONTENT}" > "${OUTPUT_PATH}/values.yaml"
 fi
 
-if [[ -n "${VALUES_SERVER_CONTENT}" ]] && [[ -n "${SERVER_VALUES_FILE}" ]]; then
-  echo "${VALUES_SERVER_CONTENT}" > "${DEST_DIR}/${SERVER_VALUES_FILE}"
+if [[ -n "${VALUES_SERVER_CONTENT}" ]] && [[ -n "${VALUES_FILE}" ]]; then
+  echo "${VALUES_SERVER_CONTENT}" > "${OUTPUT_PATH}/${VALUES_FILE}"
 fi
 
 echo "Files in output path"
-ls -l "${DEST_DIR}"
+ls -l "${OUTPUT_PATH}"

@@ -76,7 +76,7 @@ variable "cluster_ingress_hostname" {
 variable "cluster_type" {
   type        = string
   description = "The cluster type (openshift or ocp3 or ocp4 or kubernetes)"
-  default     = "ocp4"
+  default     = "openshift"
 }
 
 variable "tls_secret_name" {

@@ -1,13 +1,22 @@
 
 # Resource Group Variables
-variable "resource_group_name" {
+variable cluster_username {
   type        = string
-  description = "Existing resource group where the IKS cluster will be provisioned."
+  description = "The username for AWS access"
 }
 
-variable "ibmcloud_api_key" {
+variable "cluster_password" {
   type        = string
-  description = "The api key for IBM Cloud access"
+  description = "The password for AWS access"
+}
+
+variable "server_url" {
+  type        = string
+}
+
+variable "bootstrap_prefix" {
+  type = string
+  default = ""
 }
 
 variable "region" {
@@ -64,7 +73,7 @@ variable "git_type" {
 }
 
 variable "git_org" {
-  default = "seansund"
+  default = "cloud-native-toolkit-test"
 }
 
 variable "git_repo" {
@@ -77,3 +86,19 @@ variable "gitops_namespace" {
 
 variable "git_username" {
 }
+
+variable "kubeseal_namespace" {
+  default = "sealed-secrets"
+}
+
+variable "cp_entitlement_key" {
+}
+
+variable "ibmcloud_api_key" {
+}
+
+#variable "region" {
+#}
+
+#variable "resource_group_name" {
+#}

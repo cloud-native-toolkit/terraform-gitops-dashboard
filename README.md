@@ -1,6 +1,6 @@
 # Developer Dashboard module
 
-Module that populates a gitops repository with the Developer Dashboard  chart from https://charts.cloudnativetoolkit.dev. Developer dashboard displays the links to all the tools installed on the cluster as part of CloudNative toolkit.
+Module that populates  gitops repository with the Developer Dashboard  chart from https://charts.cloudnativetoolkit.dev. Developer dashboard displays the links to all the tools installed on the cluster as part of CloudNative toolkit.
 
 ## Software dependencies
 

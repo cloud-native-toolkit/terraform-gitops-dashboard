@@ -96,7 +96,10 @@ variable "cp_entitlement_key" {
 
 variable "ibmcloud_api_key" {
 }
-
+variable "cluster_ca_cert" {
+  type        = string
+  description = "The certificate authority for the cluster"
+}
 #variable "region" {
 #}
 

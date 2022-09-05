@@ -1,9 +1,7 @@
 id: github.com/cloud-native-toolkit/terraform-gitops-dashboard
 name: gitops-dashboard
 type: terraform
-description: >-
-  Module to configure the provisioning of the Developer Dashboard in a GitOps
-  repo
+description: Module to configure the provisioning of the Developer Dashboard in a GitOps repo
 tags:
   - tools
   - gitops
@@ -14,12 +12,12 @@ versions:
       - ocp4
     providers:
       - name: gitops
-        source: cloud-native-toolkit/gitops
+        source: "cloud-native-toolkit/gitops"
     dependencies:
       - id: gitops
         refs:
           - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
-            version: '>= 1.1.0'
+            version: ">= 1.1.0"
       - id: cluster
         refs: []
         optional: true
@@ -27,9 +25,12 @@ versions:
       - id: namespace
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-            version: '>= 1.0.0'
+            version: ">= 1.0.0"
     variables:
       - name: gitops_config
+        moduleRef:
+          id: gitops
+          output: gitops_config
         type: |-
           object({
               boostrap = object({
@@ -81,10 +82,10 @@ versions:
               })
             })
         description: Config information regarding the gitops repo structure
+      - name: git_credentials
         moduleRef:
           id: gitops
-          output: gitops_config
-      - name: git_credentials
+          output: git_credentials
         type: |-
           list(object({
               repo = string
@@ -93,47 +94,49 @@ versions:
               token = string
             }))
         description: The credentials for the gitops repo(s)
-        moduleRef:
-          id: gitops
-          output: git_credentials
-      - name: namespace
-        type: string
-        description: The namespace where the application should be deployed
-        moduleRef:
-          id: namespace
-          output: name
-      - name: cluster_ingress_hostname
-        type: string
-        description: Ingress hostname of the IKS cluster.
-        default: ''
-        moduleRef:
-          id: cluster
-          output: platform.ingress
       - name: cluster_type
-        type: string
-        description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
-        default: openshift
         moduleRef:
           id: cluster
           output: platform.type_code
-      - name: tls_secret_name
         type: string
-        description: The name of the secret containing the tls certificate values
-        default: ''
+        description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+        default: openshift
+        optional: true
+      - name: cluster_ingress_hostname
+        moduleRef:
+          id: cluster
+          output: platform.ingress
+        type: string
+        description: Ingress hostname of the IKS cluster.
+        default: ""
+        optional: true
+      - name: tls_secret_name
         moduleRef:
           id: cluster
           output: platform.tls_secret
+        type: string
+        description: The name of the secret containing the tls certificate values
+        default: ""
+        optional: true
+      - name: namespace
+        moduleRef:
+          id: namespace
+          output: name
+        type: string
+        description: The namespace where the application should be deployed
+      - name: server_name
+        moduleRef:
+          id: gitops
+          output: server_name
+        type: string
+        description: The name of the server
+        default: default
+        optional: true
       - name: image_tag
         type: string
         description: The image version tag to use
         default: v1.4.4
-      - name: server_name
-        type: string
-        description: The name of the server
-        default: default
-        moduleRef:
-          id: gitops
-          output: server_name
+        optional: true
     version: v1.7.0
     outputs:
       - name: name
@@ -155,7 +158,7 @@ versions:
       - id: gitops
         refs:
           - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
-            version: '>= 1.1.0'
+            version: ">= 1.1.0"
       - id: cluster
         refs: []
         optional: true
@@ -163,7 +166,7 @@ versions:
       - id: namespace
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-            version: '>= 1.0.0'
+            version: ">= 1.0.0"
     variables:
       - name: gitops_config
         moduleRef:
@@ -246,7 +249,7 @@ versions:
           output: platform.ingress
         type: string
         description: Ingress hostname of the IKS cluster.
-        default: ''
+        default: ""
         optional: true
       - name: tls_secret_name
         moduleRef:
@@ -254,7 +257,7 @@ versions:
           output: platform.tls_secret
         type: string
         description: The name of the secret containing the tls certificate values
-        default: ''
+        default: ""
         optional: true
       - name: namespace
         moduleRef:
